@@ -13,9 +13,9 @@
     $destinationData=loadMarkets("market_types",$dataId);
     function getBlogData($marketName){
     //create client
-	    $consumerKey="Uzk96TtxXZPJJLaqU3a91VoYN1Un5ewaluxUEpcQF5gfURlsEA";
-	    $consumerSecret="kphLJhxkE8M7hAm29SHT01gb50sV4wx8s7Lxc98eaf8FkSD6Hc";
-	    $blogName='yhipartners.tumblr.com';
+	    $consumerKey="";
+	    $consumerSecret="";
+	    $blogName='username.tumblr.com';
 
 	    $client = new Tumblr\API\Client($consumerKey, $consumerSecret);
 	    $response=$client->getBlogPosts(($blogName), array('tag' => $marketName));
