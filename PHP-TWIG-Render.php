@@ -1,10 +1,5 @@
 <?php
   
-  require_once('../setBackendPath.php');
-  require_once($backendPath.'config.php');
-  require_once ('../templates/twigController.php');
-  require_once('../integration/processPayment.php');
-  require_once('commonWeb.php');
   
   if (count($_POST)==0){
       $transactionResult = true;
