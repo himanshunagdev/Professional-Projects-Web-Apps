@@ -101,12 +101,3 @@
   <? include('footer.php'); ?>
   </body>
   
-<!--   $(document).ready(function() {
-    $("ul li a").click(function() {
-        text = $(this).closest("li").text();
-        $("input[name='selection']").val(text);
-        $(this).parents('.dropdown').find('.dropdown-toggle').html(text+' <span class="caret"></span>');
-        $("#search").submit();
-    });
-});
-   -->
