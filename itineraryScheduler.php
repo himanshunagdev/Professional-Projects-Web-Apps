@@ -365,20 +365,6 @@ require_once($backendPath."adminModuleStart.php");
 
                     setFormSection('description',true,guideItem.description);
 					
-					/*/
-                    setFormSection('image',!changeGuideItemResult,value);
-                    setFormSection('latitude',!changeGuideItemResult,value);
-                    setFormSection('longitude',!changeGuideItemResult,value);
-
-                    scheduler.formSection('image').setValue(guideItem.image);
-                    var imageSection=scheduler.formSection('image');
-                    imageSection.control.disabled = !changeGuideItemResult;  
-                    var latSection=scheduler.formSection('latitude');
-                    latSection.control.disabled = !changeGuideItemResult;     
-                    var lngSection=scheduler.formSection('longitude');
-                    lngSection.control.disabled = !changeGuideItemResult;
-					*/
-					
                 } else (changeGuideItemResult) {
 
                 }
