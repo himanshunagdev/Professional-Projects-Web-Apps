@@ -1,7 +1,3 @@
-<?php
-require_once("../setBackendPath.php");
-require_once($backendPath."adminModuleStart.php");
-?>    
 
 	<!-- load scheduler-->
     <link rel="STYLESHEET" href="../dhtmlxScheduler/codebase/dhtmlxscheduler.css" type="text/css" media="screen" title="no title" charset="utf-8">		
