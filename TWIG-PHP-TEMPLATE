@@ -1,0 +1,147 @@
+{% block body_html %}
+
+    <h3>Booking Information</h3>
+    <div class="row">
+        <div class="col-sm-6">
+            <table class="table tabler-bordered">
+            	<col width="50%">
+            	<tr>
+                    <td><b>Guest First Name</b></td>
+                    <td>{{bookingData.GuestFirstName}}</td>
+                </tr>
+                <tr>
+                    <td><b>Guest Last Name</b></td>
+                    <td>{{bookingData.GuestLastName}}</td>
+                </tr>
+                 <tr>
+                    <td><b>Cell</b></td>
+                    <td>{{bookingData.Cell}}</td>
+                </tr>
+                <tr>
+                    <td><b>Email</b></td>
+                    <td>{{bookingData.GuestEmail}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <table class="table tabler-bordered">
+            	<col width="50%">
+            	 <tr>
+                    <td><b>Booking Number</b></td>
+                    <td>{{bookingData.BookingNumber}}</td>
+                </tr>
+                <tr>
+                    <td><b>Property Name</b></td>
+                    <td>{{bookingData.PropertyName}}</td>
+                </tr>
+                <tr>
+                    <td><b>Property Location</b></td>
+                    <td>{{bookingData.PropertyLocation}}</td>
+                </tr>
+                <tr>
+                    <td><b>Property Bedrooms</b></td>
+                    <td>{{bookingData.PropertyBedrooms}}</td>
+                </tr>     
+            </table>
+        </div>
+    </div><hr><br>
+	{# Form Generate #}
+	<form action={{formAction}} method="POST">
+	   	<input type="hidden" name="booking_number" value={{booking_number}}>
+		<fieldset>
+			{# Group Information #}
+		    <h3>Group Information</h3>
+		    <div class="row">
+		        <div class="col-sm-6">
+		           <table class="table tabler-bordered">
+		           		<col width="50%">
+		                <tr>
+		                    <td><b>Nationality</b></td>
+		                    <td><input class="input-md-6" type="text" name="nationality" value="{{requestData['nationality']}}"></td>
+		                </tr>
+		                <tr>
+		                    <td><b>Group</b></td>
+		                    <td><input class="input-md-6" type="text" name="group" value="{{requestData['group']}}"></td>
+		                </tr>
+		                <tr>
+		                    <td><b>Ages</b></td>
+		                    <td><input class="input-md-6" type="text" name="group_ages" value="{{requestData['group_ages']}}"></td>
+		                </tr>
+		            </table>
+		        </div>
+		        <div class="col-sm-6">
+		            <table class="table tabler-bordered">
+		            	<col width="50%">
+		                <tr>
+		                    <td><b>Number of Adults</b></td>
+		                    <td><input class="input-md-6" type="text" name="numberofadults" value="{{requestData['numberofadults']}}"></td>
+		                </tr>
+		                <tr>
+		                    <td><b>Number of Children</b></td>
+		                    <td><input class="input-md-6" type="text" name="noofchildren" value="{{requestData['noofchildren']}}"></td>
+		                </tr>
+		                <tr>
+		                    <td><b>Ages of Children</b></td>
+		                    <td><input class="input-md-6" type="text" name="agesofchildren" value="{{requestData['agesofchildren']}}"></td>
+		                </tr>
+		            </table>
+		        </div>
+		    </div><hr><br>
+		    {# Preferences and Guest Profile #}
+			{% for preference in preferencesData %}
+				<h3>{{preference.label}}</h3><hr>
+				{% for type in preference.children %}
+				        <div class="form-group">
+				            <div class="row">
+				                <label class="col-md-3 control-label">{{type.label}}</label>
+				                <div class="col-md-8">
+				                    <div class="input-group">
+				                        <span class="input-group-addon"> 
+				                        	{% if requestData[type.value~"_"~"checked"] %}
+    											 <input type="checkbox" id="{{type.value~"_"~"checked"}}" name="{{type.value~"_"~"checked"}}" checked='checked'>
+    										{% else %}
+    											 <input type="checkbox" id="{{type.value~"_"~"checked"}}" name="{{type.value~"_"~"checked"}}">
+											{% endif %}      
+				                        </span>
+				                        {% if requestData[type.value~"_"~"note"] %}
+				                        	<input type="text" class="form-control" id="{{type.value~"_"~"note"}}" name="{{type.value~"_"~"note"}}" value="{{requestData[type.value~"_"~"note"]}}">
+				                        {% else %}
+    										<input type="text" class="form-control" id="{{type.value~"_"~"note"}}" name="{{type.value~"_"~"note"}}" value="">
+										{% endif %}     
+				                    </div>
+				                </div>
+				            </div>
+				        </div>	        
+				{% endfor %}<hr><br>
+			{% endfor %}
+			{# Services offered #}
+			{% for category in conciergeCategoriesData %}
+				<h3>{{category.label}}</h3><hr>
+				{% for item in category.children %}
+				        <div class="form-group">
+				            <div class="row">
+				                <label class="col-md-3 control-label">{{item.label}}</label>
+				                <div class="col-md-8">
+				                    <div class="input-group">
+				                        <span class="input-group-addon"> 
+				                        	{% if requestData[item.value~"_"~"checked"] %}
+    											 <input type="checkbox" id="{{item.value~"_"~"checked"}}" name="{{item.value~"_"~"checked"}}" checked='checked'>
+    										{% else %}
+    											 <input type="checkbox" id="{{item.value~"_"~"checked"}}" name="{{item.value~"_"~"checked"}}">
+											{% endif %}      
+				                        </span>
+				                        {% if requestData[item.value~"_"~"note"] %}
+				                        	<input type="text" class="form-control" id="{{item.value~"_"~"note"}}" name="{{item.value~"_"~"note"}}" value="{{requestData[item.value~"_"~"note"]}}">
+				                        {% else %}
+    										<input type="text" class="form-control" id="{{item.value~"_"~"note"}}" name="{{item.value~"_"~"note"}}" value="">
+										{% endif %}     
+				                    </div>
+				                </div>
+				            </div>
+				        </div>	        
+				{% endfor %}<hr><br>
+			{% endfor %}
+		<button type="submit" input class="btn btn-primary btn-lg width:100%;">Save</button>
+		</fieldset>
+	</form>
+{% endblock %}
