@@ -16,7 +16,7 @@
       $transactionResult = $instance->processSale();
   }
 
-  $transactionMsg = $transactionResult ? "YHI PARTNERS CONCIERGE REQUEST FORM" : "Your transaction could not be completed.";
+  $transactionMsg = $transactionResult ? "" : "";
 
   $twig = (new TwigController)->getTwigEnvironment();
   $bookingDataArray = getBookings($_GET['booking_number']);
@@ -29,13 +29,6 @@
   $conciergeCategoriesData = getConciergeCategoriesData();
    
   $allCategoryItems = array();
-
-  /*foreach ($conciergeCategoriesData as $key => $value){
-          if ($key != "Staffing")
-              $allCategoryItems = array_merge($allCategoryItems,$value['items']);
-  }*/
-
-  //dd($conciergeCategoriesData['Staffing']['items'],$allCategoryItems);
 
   $bookingData = array(
     'BookingDate' => substr($bookingDataArray['created'],0,strpos($bookingDataArray['created']," ")), 
@@ -50,36 +43,26 @@
   );
 
   $contactData = array(
-    'YourAgent' => "Call YHI Booking at +1 (212) 244-4001 ext. 1 or email at booking@yhipartners.com for any general questions or concerns.",
-    'LocalAgent' => "Call YHI Concierge at 1-212-244-4001 x200 or conceirge@yhipartners.com for any questions about the property for check in and check out.",
-    'Concierge' => "Call +1 (212) 244-4001 ext. 200 or at concierge@yhipartners.com to request a follow up request on concierge services.",
-    'EmergencyContact' => "Call +1 (212)  244-4001 in case of an emergency after hours."
+    'YourAgent' => "",
+    'LocalAgent' => "",
+    'Concierge' => "",
+    'EmergencyContact' => ""
   );
 
   $propertyTerms = array(
-    'CheckIn' => "When you arrive in". $bookingDataArray['property_data']['market_name'].", please call YHI Concierge at 1-212-244-4001 x200 or conceirge@yhipartners.com.",
-    'CheckOut' => "Upon departure, please leave the keys on the dining room table. If key is lost, the guest will be charged in full for new lock and key.",
-    'Payment' => "If partial payment is made, please remit payment for the remaining balance 30 days prior to check in date.",
-    'Cancellation' => "This reservation is non-refundable and cannot be changed or cancelled.",
-    'StayExtensions' => "Stay extensions require a new reservation. Guests will be charged for late checkout or any unauthorized stay at 150% of the nightly rate for each additional day stayed.",
-    'PropertyRules' => "Neither YHI Partners nor the property management shall be held responsible for any injury, loss or damage to any guests, their visitors or their property or except for damage caused as a result of YHI or the management’s gross negligence. Guests should immediately notify management if locks on doors or windows are not functioning properly or any other potentially hazardous condition is discovered. Guests are responsible for items that are provided with the property. Guests are responsible for ensuring their own property. Guests are responsible for keeping all areas of the property in good condition at all times (including bathrooms, kitchen, bedrooms, pool, laundry, and living room areas). Guests are responsible for the behavior of their visitors and any damages caused by them. Guests should keep the noise level to a minimum at all times (ex.please no loud music).",
+    'CheckIn' => "",
+    'CheckOut' => "",
+    'Payment' => "",
+    'Cancellation' => "",
+    'StayExtensions' => "",
+    'PropertyRules' => "",
     'Smoking' => "Absolutely NO smoking inside the property."
-  );
-
-  $conciergeData = array(
-    'Staffing' => "Our Concierge Team accommodates the needs of any lifestyle, arranging staffing services such as: housekeeping, chauffeur, personal chef, private nanny, security, and much more.",
-    'Activities' => "No excursion is complete without a full itinerary of activities and attractions including: sightseeing tours, yacht charters, sporting activities, as well as booking family-oriented expeditions.",
-    'Entertainment' => "We craft the finest travel experiences by offering entertainment through the arrangement and procurement of restaurant and nightclub reservations, in-home entertainment, tickets to shows and sporting events, and more.",
-    'Rentals' => "Get around any destination easily, with one of our convenient rental services available upon request.",
-    'Transportation' => "You will never be left stranded with our exceptional travel accommodation services catering to any budget.",
-    'EventPlanning' => "Let us do all the planning for your next holiday party or special event. We arrange everything including photographers, bartenders and servers, specialized catering, and event planning consultants."
   );
 
   // get booking data
   $bookingInfo = array(
     'bookingData' => $bookingData,
     'contactData' => $contactData,
-    'conciergeData' => $conciergeData,
     'propertyTerms' => $propertyTerms
   );
 
